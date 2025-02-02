@@ -85,6 +85,13 @@ main {
   gap: 12px;
 }
 
+.podcast-card-area {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .album-card {
   width: 202px;
   height: 288px;
@@ -93,7 +100,28 @@ main {
   gap: 8px;
   box-shadow: 0px 4px 8px 0.2px rgba(45, 148, 36, 0.1);
   border-radius: 20px;
-  padding: 8px;
+  padding: 12px;
+}
+
+.album-card:hover {
+  transition: 1s;
+  transform: scale(1.02);
+}
+
+.podcast-card {
+  width: 202px;
+  height: 288px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0px 4px 8px 0.2px rgba(45, 148, 36, 0.1);
+  border-radius: 20px;
+  padding: 12px;
+}
+
+.podcast-card:hover {
+  transition: 1s;
+  transform: scale(1.02);
 }
 
 .music-card {
@@ -104,7 +132,12 @@ main {
   gap: 8px;
   box-shadow: 0px 4px 8px 0.2px rgba(45, 148, 36, 0.1);
   border-radius: 20px;
-  padding: 8px;
+  padding: 12px;
+}
+
+.music-card:hover {
+  transition: 1s;
+  transform: scale(1.02);
 }
 
 .artist-card {
@@ -112,22 +145,44 @@ main {
   height: 288px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 30px;
   box-shadow: 0px 4px 8px 0.2px rgba(45, 148, 36, 0.1);
   border-radius: 20px;
-  padding: 8px;
+  padding: 12px;
+  text-align: center;
+}
+
+.artist-card:hover {
+  transition: 1s;
+  transform: scale(1.02);
 }
 
 .album-card img {
   border-radius: 20px;
+  width: 202px;
+  height: 202px;
+  object-fit: cover;
 }
 
 .music-card img {
   border-radius: 20px;
+  width: 202px;
+  height: 202px;
+  object-fit: cover;
 }
 
 .artist-card img {
   border-radius: 20px;
+  width: 202px;
+  height: 202px;
+  object-fit: cover;
+}
+
+.podcast-card img {
+  border-radius: 20px;
+  width: 202px;
+  height: 202px;
+  object-fit: cover;
 }
 
 .section-area {
@@ -147,12 +202,20 @@ main {
   font-size: 28px;
 }
 
+.section-podcast h2 {
+  font-size: 28px;
+}
+
 .section-music {
   margin-top: 40px;
 }
 
 .section-artist {
   margin-top: 40px;
+}
+
+.section-podcast {
+    margin-top: 40px;
 }
 
 .card-text {

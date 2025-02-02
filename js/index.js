@@ -15,11 +15,15 @@ function formatDuration(milliseconds) {
   return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
+function truncateText(text, maxLength) {
+  return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+}
+
 async function fetchData() {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log(result.artists);
+    console.log(result.podcasts);
     document.querySelector(
       "#albumCount"
     ).innerHTML = `Albums(${result.albums.totalCount})`;
@@ -31,7 +35,7 @@ async function fetchData() {
       row.innerHTML = `
         <img src="${album.data.coverArt.sources[0].url}" />
         <div class="card-text">
-          <h3>${album.data.name}</h3>
+          <h3>${truncateText(album.data.name, 20)}</h3>
            <p>${album.data.artists.items[0].profile.name}</p>
         </div>`;
       albumArea.appendChild(row);
@@ -48,7 +52,7 @@ async function fetchData() {
         row.innerHTML = `
           <img src="${music.data.albumOfTrack.coverArt.sources[0].url}" />
           <div class="card-text">
-            <h3>${music.data.name}</h3>
+            <h3>${truncateText(music.data.name, 20)}</h3>
              <p>${music.data.artists.items[0].profile.name}</p>
              <p>${formatDuration(music.data.duration.totalMilliseconds)}</p>
           </div>`;
@@ -66,9 +70,25 @@ async function fetchData() {
         row.innerHTML = `
           <img src="${artist.data.visuals.avatarImage.sources[0].url}" />
           <div class="card-text">
-            <h3>${artist.data.profile.name}</h3>
+            <h3 style="font-size: 22px">${truncateText(artist.data.profile.name, 20)}</h3>
           </div>`;
         artistArea.appendChild(row);
+      });
+
+      document.querySelector(
+        "#podcastCount"
+      ).innerHTML = `Podcasts(${result.podcasts.totalCount})`;
+  
+      const podcastArea = document.querySelector("#podcastCardArea");
+      result.podcasts.items.forEach((podcast) => {
+        const row = document.createElement("div");
+        row.classList.add("podcast-card");
+        row.innerHTML = `
+          <img src="${podcast.data.coverArt.sources[0].url}" />
+          <div class="card-text">
+            <h3 style="font-size: 22px">${truncateText(podcast.data.name, 12)}</h3>
+          </div>`;
+        podcastArea.appendChild(row);
       });
   } catch (error) {
     console.error(error);
